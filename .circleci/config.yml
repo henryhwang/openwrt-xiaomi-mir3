@@ -36,7 +36,7 @@ jobs:
         no_output_timeout: 30m
     - store_artifacts:
         name: Save result into Artifacts
-        path: ~$CIRCLE_PROJECT_REPONAME/bin
+        path: ./bin
 
 workflows:
   version: 2

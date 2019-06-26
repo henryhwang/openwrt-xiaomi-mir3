@@ -34,6 +34,9 @@ jobs:
         name: (OpenWrt) Build Target
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make world -j16"
         no_output_timeout: 30m
+    - store_artifacts:
+        name: Save result into Artifacts
+        path: ~$CIRCLE_PROJECT_REPO"NAME/bin
 
 workflows:
   version: 2

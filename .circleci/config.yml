@@ -36,10 +36,10 @@ jobs:
         no_output_timeout: 30m
     - run:
         name: Copy result to a fix place
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "mkdir /tmp/bin && cp ~$CIRCLE_PROJECT_REPONAME/bin /tmp/bin"
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "mkdir /tmp/result && cp -r ~$CIRCLE_PROJECT_REPONAME/bin /tmp/result"
     - store_artifacts:
         name: Save result into Artifacts
-        path: /tmp/bin
+        path: /tmp/result
 
 workflows:
   version: 2

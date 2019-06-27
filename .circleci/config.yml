@@ -32,7 +32,7 @@ jobs:
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .config && make defconfig && make oldconfig"
     - run:
         name: (OpenWrt) Build Target
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make package/shadowsocks-libev"
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make -j1 V=s package/shadowsocks-libev"
         no_output_timeout: 30m
     - run:
         name: Copy result to a fix place

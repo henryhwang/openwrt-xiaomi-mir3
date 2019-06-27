@@ -48,4 +48,4 @@ workflows:
     - build:
         filters:
           branches:
-            only: 18.06.2
+            only: buildpackage

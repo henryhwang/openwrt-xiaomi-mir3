@@ -35,7 +35,7 @@ jobs:
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && ./scripts/feeds install -a"
     - run:
         name: Append package config into .config
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .packageConfig >> .config"
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .packagesConfig >> .config"
     - run:
         name: (OpenWrt) Setup Target Configuration for Xiaomi Mi Router 3
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cp .config /tmp/result/config1 && make defconfig && cp .config /tmp/result/config2"

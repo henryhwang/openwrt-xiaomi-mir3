@@ -29,14 +29,14 @@ jobs:
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && ./scripts/feeds install -a"
     - run:
         name: (OpenWrt) Setup Target Configuration for Xiaomi Mi Router 3
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .config && make defconfig"
-    - run:
-        name: (OpenWrt) Build Target
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make world -j1"
-        no_output_timeout: 30m
-    - run:
-        name: Copy result to a fix place
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "mkdir /tmp/result && cp -r ~$CIRCLE_PROJECT_REPONAME/bin /tmp/result"
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "mkdir /tmp/result && cd ~$CIRCLE_PROJECT_REPONAME && cp .config /tmp/result/config0 && make defconfig && cp .config /tmp/result/config1"
+    # - run:
+    #     name: (OpenWrt) Build Target
+    #     command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make world -j1"
+    #     no_output_timeout: 30m
+    # - run:
+    #     name: Copy result to a fix place
+    #     command: $DEFAULT_SUDOSU $DEFAULT_USER -c "mkdir /tmp/result && cp -r ~$CIRCLE_PROJECT_REPONAME/bin /tmp/result"
     - store_artifacts:
         name: Save result into Artifacts
         path: /tmp/result

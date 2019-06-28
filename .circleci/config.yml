@@ -24,9 +24,9 @@ jobs:
     - run:
         name: Create tmp folder for result
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "mkdir /tmp/result"
-    - run:
-        name: Check if there is .config file
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && ls .config && cp .config /tmp/result/config0"
+    #- run:
+    #    name: Check if there is .config file
+    #    command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && ls .config && cp .config /tmp/result/config0"
     - run:
         name: (OpenWrt) Feeds Update
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && ./scripts/feeds update -a"

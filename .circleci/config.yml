@@ -6,7 +6,7 @@ jobs:
     environment:
     - DEFAULT_USER: openwrt
     - DEFAULT_SUDOSU: sudo su
-    - PACKAGE_NAME: dnsmasq-full
+    - PACKAGE_NAME: dnsmasq
     steps:
     - run:
         name: (System) Update Linux Package Management System

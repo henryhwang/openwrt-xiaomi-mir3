@@ -32,6 +32,9 @@ jobs:
         name: (OpenWrt) Setup Target Configuration for Xiaomi Mi Router 3
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .config && make defconfig"
     - run:
+        name: Build Toolchain
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make toolchain" 
+    - run:
         name: (OpenWrt) Build Target
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make -j1 V=s package/$PACKAGE_NAME/compile && make -j1 V=s package/$PACKAGE_NAME/install && make package/index"
         no_output_timeout: 30m

@@ -6,6 +6,7 @@ jobs:
     environment:
     - DEFAULT_USER: openwrt
     - DEFAULT_SUDOSU: sudo su
+    - PACKAGE_NAME: dnsmasq-full
     steps:
     - run:
         name: (System) Update Linux Package Management System
@@ -29,10 +30,10 @@ jobs:
         command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && ./scripts/feeds install -a"
     - run:
         name: (OpenWrt) Setup Target Configuration for Xiaomi Mi Router 3
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .config && make defconfig && make oldconfig"
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && cat .config && make defconfig"
     - run:
         name: (OpenWrt) Build Target
-        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make -j1 V=s package/shadowsocks-libev/compile && make -j1 V=s package/shadowsocks-libev/install && make package/index"
+        command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && make -j1 V=s package/$PACKAGE_NAME/compile && make -j1 V=s package/$PACKAGE_NAME/install && make package/index"
         no_output_timeout: 30m
     - run:
         name: Copy result to a fix place
